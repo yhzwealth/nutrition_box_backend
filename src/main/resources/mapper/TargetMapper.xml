@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.wealth.mapper.TargetQuestionMapper">
+
+    <select id="getQuestionByBelongs" resultType="com.wealth.pojo.TargetQuestion" parameterType="java.util.List">
+        SELECT * FROM `targetquestion`
+        <where>
+            <foreach collection="list" item="item" separator="OR" index="">
+                (belong >> #{item}) &amp; 1 = 1
+            </foreach>
+        </where>
+        order by 'qId' ASC
+    </select>
+</mapper>

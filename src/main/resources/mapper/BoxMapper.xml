@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.wealth.mapper.BoxMapper">
+
+    <insert id="moveToCart">
+        INSERT INTO cartbox(boxId,productId)
+        SELECT (#{uuid}),productId FROM `box`
+        WHERE openId = (#{openId})
+    </insert>
+    <select id="getPriceWithoutDiscount" resultType="java.lang.Double">
+        SELECT SUM(price)
+        FROM `product`
+        WHERE product.id IN
+              (SELECT productId
+               FROM `box`
+               WHERE openId=(#{openId}))
+    </select>
+</mapper>

@@ -1,0 +1,28 @@
+logging:
+  level:
+    org.springframework.web: info
+    com.github.binarywang.demo.wx.miniapp: debug
+    cn.binarywang.wx.miniapp: debug
+wx:
+  miniapp:
+    configs:
+        - appid: wx2c6d5bc03e19c64d
+          secret: 3d05f19776e9091e7dec4bb9b5f0397b
+          token: #微信小程序消息服务器配置的token
+          aesKey: #微信小程序消息服务器配置的EncodingAESKey
+          msgDataFormat: JSON
+  pay:
+    appId: wx2c6d5bc03e19c64d
+    mchId: #微信支付商户号
+    mchKey: #微信支付商户密钥
+    subAppId: #服务商模式下的子商户公众账号ID
+    subMchId: #服务商模式下的子商户号
+    keyPath: # p12证书的位置，可以指定绝对路径，也可以指定类路径（以classpath:开头）
+
+server:
+    port: 9000
+    ssl:
+        key-store: tomcat.keystore ##秘钥库文件名称，即上面生成的自签名证书
+        key-store-password: 123456 ## 生成秘钥库文件的密码
+        key-store-type: JKS ## 秘钥库类型（JKS为jdk的keytool工具默认生成的秘钥库类型）
+        key-alias: tomcat ## 秘钥别名
